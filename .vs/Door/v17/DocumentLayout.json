@@ -3,7 +3,23 @@
   "WorkspaceRootPath": "D:\\UNITY\\study\\Door\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\gofront.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\ui\\mainmenuui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\mainmenuui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\roomnavigation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\roomnavigation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\ui\\uipanelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uipanelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\core\\gofront.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gofront.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\buttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\core\\goback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\goback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\goback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\roomnavigation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\roomnavigation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\core\\inputaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,6 +45,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UNITY\\study\\Door\\Assets\\Scripts\\InputAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\InputAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GameController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Core\\GameController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +62,46 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "SaveManager.cs",
+              "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\SaveManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SaveManager.cs",
+              "ToolTip": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\SaveManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\SaveManager.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T14:56:45.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainMenuUI.cs",
+              "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\MainMenuUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\MainMenuUI.cs",
+              "ToolTip": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\MainMenuUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\MainMenuUI.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T14:35:10.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UIPanelManager.cs",
+              "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\UIPanelManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIPanelManager.cs",
+              "ToolTip": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\UIPanelManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\UIPanelManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T14:26:02.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "GoBack.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GoBack.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GoBack.cs",
@@ -58,12 +109,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\GoBack.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T09:39:24.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T09:39:24.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "GoFront.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GoFront.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GoFront.cs",
@@ -76,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "RoomNavigation.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\RoomNavigation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\RoomNavigation.cs",
@@ -89,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "InputAction.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\InputAction.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\InputAction.cs",
@@ -101,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Exit.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\Exit.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\Exit.cs",
@@ -113,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ButtonCommand.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\ButtonCommand.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\ButtonCommand.cs",
@@ -121,12 +171,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\ButtonCommand.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAgwBUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T09:23:19.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T09:23:19.231Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GameController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameController.cs",
@@ -134,12 +183,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\GameController.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAkwDAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T09:11:53.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T09:11:53.799Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "InputAction.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\InputAction.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputAction.cs",
@@ -151,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Exit.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Exit.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Exit.cs",
