@@ -1,0 +1,19 @@
+# Unity 本地编辑器设置
+/[Uu]ser[Ss]ettings/
+
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.suo
+*.user
+*.userprefs

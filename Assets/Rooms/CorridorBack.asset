@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3baf635140a6d041a3330fadc556f02, type: 3}
+  m_Name: CorridorBack
+  m_EditorClassIdentifier: 
+  description: "\u8D70\u5ECA\u540E\u90E8\u5206"
+  roomName: CorridorBack
+  exits:
+  - keyString: back
+    exitDescription: "\u4ECE\u540E\u95E8\u56DE\u5230\u6559\u5BA4"
+    valueRoom: {fileID: 11400000, guid: f32a391ce3b7905449ec1863d2c325d3, type: 2}
