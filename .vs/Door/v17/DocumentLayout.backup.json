@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "D:\\UNITY\\study\\Door\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\managers\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\mainmenuui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|d:\\unity\\study\\door\\assets\\scripts\\managers\\gamesavebootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|D:\\UNITY\\study\\Door\\assets\\scripts\\managers\\gamesavebootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBA6C1D8-7F2F-364F-6770-755BB0F1BE4B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\gamesavebootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -78,11 +82,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "SettingsManager.cs",
+              "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\SettingsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SettingsManager.cs",
+              "ToolTip": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\SettingsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\SettingsManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T15:53:22.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "GameSaveBootstrap.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\GameSaveBootstrap.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GameSaveBootstrap.cs",
@@ -90,12 +107,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Managers\\GameSaveBootstrap.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-18T15:45:09.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-18T15:45:09.422Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GameManager.cs",
@@ -107,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "InputAction.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\InputAction.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputAction.cs",
@@ -119,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Exit.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Exit.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Exit.cs",
@@ -130,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\GameController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GameController.cs",
@@ -142,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SaveLoadUI.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\SaveLoadUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\SaveLoadUI.cs",
@@ -154,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "GameData.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Data\\GameData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Data\\GameData.cs",
@@ -166,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SaveManager.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Managers\\SaveManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SaveManager.cs",
@@ -179,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainMenuUI.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\MainMenuUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\MainMenuUI.cs",
@@ -187,12 +203,11 @@
               "RelativeToolTip": "Assets\\Scripts\\UI\\MainMenuUI.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAQwCUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T14:35:10.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T14:35:10.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "UIPanelManager.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\UI\\UIPanelManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIPanelManager.cs",
@@ -204,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GoBack.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GoBack.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GoBack.cs",
@@ -216,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "GoFront.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GoFront.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GoFront.cs",
@@ -228,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "RoomNavigation.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\RoomNavigation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\RoomNavigation.cs",
@@ -240,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "InputAction.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\InputAction.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\InputAction.cs",
@@ -252,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Exit.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\Exit.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\Exit.cs",
@@ -264,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ButtonCommand.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\ButtonCommand.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\ButtonCommand.cs",
@@ -276,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\UNITY\\study\\Door\\Assets\\Scripts\\Core\\GameController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameController.cs",

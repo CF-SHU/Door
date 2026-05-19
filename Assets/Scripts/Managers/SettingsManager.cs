@@ -5,7 +5,7 @@ public static class SettingsManager
 {
     // PlayerPrefs的Key常量
     private const string MUSIC_VOLUME_KEY = "MusicVolume";
-    private const string SFX_VOLUME_KEY = "SFXVolume";
+    private const string SE_VOLUME_KEY = "SoundEffectVolume";
     private const string TEXT_SPEED_KEY = "TextSpeed";
 
     // 音乐音量（0~1的浮点数）
@@ -21,12 +21,12 @@ public static class SettingsManager
     }
 
     // 音效音量
-    public static float SFXVolume
+    public static float SEVolume
     {
-        get => PlayerPrefs.GetFloat(SFX_VOLUME_KEY, 1f);
+        get => PlayerPrefs.GetFloat(SE_VOLUME_KEY, 1f);
         set
         {
-            PlayerPrefs.SetFloat(SFX_VOLUME_KEY, value);
+            PlayerPrefs.SetFloat(SE_VOLUME_KEY, value);
             PlayerPrefs.Save();
         }
     }

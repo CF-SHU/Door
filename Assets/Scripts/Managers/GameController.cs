@@ -33,23 +33,23 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        if (displayText != null)
-            displayText.text = "GameController is alive!";
-        else
-            Debug.LogError("displayText is null!");
+        //if (displayText != null)
+        //    displayText.text = "GameController is alive!";
+        //else
+        //    Debug.LogError("displayText is null!");
 
-        if (roomNavigation.currentRoom != null)
-        {
-            displayText.text = roomNavigation.currentRoom.description;
-        }
-        else
-        {
-            displayText.text = "currentRoom is null!";
-            Debug.LogError("No current room assigned!");
-        }
+        //if (roomNavigation.currentRoom != null)
+        //{
+        //    displayText.text = roomNavigation.currentRoom.description;
+        //}
+        //else
+        //{
+        //    displayText.text = "currentRoom is null!";
+        //    Debug.LogError("No current room assigned!");
+        //}
 
-        DisplayRoomText();
-        DisplayLoggedText();
+        //DisplayRoomText();
+        //DisplayLoggedText();
     }
 
     public void DisplayLoggedText()

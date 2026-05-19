@@ -40,12 +40,13 @@ public class MainMenuUI : MonoBehaviour
     //显示————设置面板
     void OnSettings()
     {
-        GetComponent<UIPanelManager>()?.ShowPanel("SettingsPanel");
+        // 从父级 Canvas（或根Canvas）上获取 UIPanelManager
+        GetComponentInParent<UIPanelManager>()?.ShowPanel("SettingsPanel");
     }
     //显示————人物资料面板
     void OnCharacter()
     {
-        GetComponent<UIPanelManager>()?.ShowPanel("CharacterPanel");
+        GetComponentInParent<UIPanelManager>()?.ShowPanel("CharacterPanel");
     }
     //退出游戏
     void OnQuit()
