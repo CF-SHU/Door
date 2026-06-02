@@ -9,7 +9,7 @@ public static class SaveManager
     //Application.persistentDataPath: unity提供的跨平台持久化数据存储路径，
     //在Windows上是 C:\Users\用户名\AppData\LocalLow\公司名\项目名，打包后存档文件会保存在这里。
     private static string SavePath => Application.persistentDataPath + "/saves";
-    private static string AutoSavePath => SavePath + "autosave.json";
+    private static string AutoSavePath => SavePath + "/autosave.json";
     //存档数据存储,文件名 + GameData对象
     private static Dictionary<string, GameData> saveCache = new Dictionary<string, GameData>();
     //游戏数据
@@ -109,7 +109,7 @@ public static class SaveManager
     }
 
     //获取存档信息列表（用于存档选择界面UI展示）
-    public static List<SaveSlotInfo> GetSaveSolts()
+    public static List<SaveSlotInfo> GetSaveSlots()
     {
         List<SaveSlotInfo> slots = new List<SaveSlotInfo>();
         for (int i = 1; i <= 5; ++i)
@@ -133,6 +133,16 @@ public static class SaveManager
         }
         return slots;
     }
+
+    public static void StartNewGame()
+    {
+        // 重置当前数据
+        CurrentData = new GameData();
+        // 可选：删除自动存档文件
+        if (File.Exists(AutoSavePath))
+            File.Delete(AutoSavePath);
+    }
+
 }
 
 //存档位信息
