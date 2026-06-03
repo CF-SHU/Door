@@ -4,13 +4,13 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterData
 {
-    public string characterID;          // ½ÇÉ«ID
-    public string characterName;        // ½ÇÉ«Ãû³Æ
-    public Sprite characterPortrait;    // ½ÇÉ«Á¢»æ/Í·Ïñ
-    public Sprite fullBodyImage;        // È«ÉíÏñ
-    public string description;          // ½ÇÉ«ÃèÊö
-    public string[] relationshipQuotes;  // ¹ØÏµÓïÂ¼
+    public string characterID;          // ï¿½ï¿½É«ID
+    public string characterName;        // ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+    public Sprite characterPortrait;    // ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½/Í·ï¿½ï¿½
+    public Sprite fullBodyImage;        // È«ï¿½ï¿½ï¿½ï¿½
+    public string description;          // ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+    public string[] relationshipQuotes;  // ï¿½ï¿½Ïµï¿½ï¿½Â¼
 
-    // ºÃ¸Ð¶ÈµÈÊýÖµ
+    // ï¿½Ã¸Ð¶Èµï¿½ï¿½ï¿½Öµ
     public int affectionLevel;
 }
