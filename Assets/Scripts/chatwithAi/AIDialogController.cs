@@ -269,6 +269,7 @@ public class ChatMessage
     public string role;
     public string content;
 }*/
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -444,6 +445,294 @@ public class AIDialogController : MonoBehaviour
             int end = json.IndexOf("\"", start);
             string reply = json.Substring(start, end - start);
             reply = reply.Replace("\\n", "\n").Replace("\\r", "").Replace("\\\"", "\"");
+            return reply;
+        }
+        catch
+        {
+            Debug.LogError("解析JSON失败：" + json);
+            return "抱歉，我暂时无法回答这个问题。";
+        }
+    }
+
+    //玩家消息气泡（靠右）
+    void AddPlayerMessage(string text)
+    {
+        if (bubblePlayer == null || content == null)
+        {
+            Debug.LogError("bubblePlayer 未拖入！");
+            return;
+        }
+        GameObject go = Instantiate(bubblePlayer, content);
+        TextMeshProUGUI txt = go.GetComponentInChildren<TextMeshProUGUI>();
+        if (txt != null)
+        {
+            txt.text = text;
+            txt.enableWordWrapping = true;
+            txt.alignment = TextAlignmentOptions.Right;
+            //优先中文字体
+            if (chineseFont != null)
+                txt.font = chineseFont;
+            else if (englishFont != null)
+                txt.font = englishFont;
+        }
+
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(1, 0.5f);
+        rt.anchorMax = new Vector2(1, 0.5f);
+        rt.pivot = new Vector2(1, 0.5f);
+        rt.anchoredPosition = Vector2.zero;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+        StartCoroutine(ScrollToBottom());
+    }
+
+    //AI消息气泡（靠左）
+    void AddAIMessage(string text)
+    {
+        if (bubbleAI == null || content == null)
+        {
+            Debug.LogError("bubbleAI 未拖入！");
+            return;
+        }
+        GameObject go = Instantiate(bubbleAI, content);
+        TextMeshProUGUI txt = go.GetComponentInChildren<TextMeshProUGUI>();
+        if (txt != null)
+        {
+            txt.text = text;
+            txt.enableWordWrapping = true;
+            txt.alignment = TextAlignmentOptions.Left;
+            //优先中文字体
+            if (chineseFont != null)
+                txt.font = chineseFont;
+            else if (englishFont != null)
+                txt.font = englishFont;
+        }
+
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(0, 0.5f);
+        rt.anchorMax = new Vector2(0, 0.5f);
+        rt.pivot = new Vector2(0, 0.5f);
+        rt.anchoredPosition = Vector2.zero;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+        StartCoroutine(ScrollToBottom());
+    }
+
+    // 滚到底部
+    IEnumerator ScrollToBottom()
+    {
+        yield return new WaitForEndOfFrame();
+        if (scrollRect != null)
+            scrollRect.verticalNormalizedPosition = 0f;
+    }
+}
+
+[Serializable]
+public class ChatRequest
+{
+    public string model;
+    public List<ChatMessage> messages;
+}
+
+[Serializable]
+public class ChatMessage
+{
+    public string role;
+    public string content;
+}
+*/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+using System;
+using System.Text;
+using TMPro;
+
+public class AIDialogController : MonoBehaviour
+{
+    [Header("必须拖入的UI")]
+    public Transform content;
+    public TMP_InputField inputField;
+    public Button sendBtn;
+    public Button returnButton;
+
+    [Header("角色名和气泡")]
+    public TextMeshProUGUI charNameText;
+    public GameObject bubblePlayer;
+    public GameObject bubbleAI;
+    public TMP_FontAsset englishFont;
+    //新增：挂载你做好的中文字体资源
+    public TMP_FontAsset chineseFont;
+    public ScrollRect scrollRect;
+
+    // 角色数据：只在SetRoleData里赋值，只读保护
+    private RoleData _currentChar;
+    public RoleData CurrentChar
+    {
+        get { return _currentChar; }
+        private set { _currentChar = value; }
+    }
+
+    void Awake()
+    {
+        if (returnButton != null)
+            returnButton.onClick.AddListener(() => UIManager.Instance.BackToDetail());
+    }
+
+    // 外部唯一入口：设置角色数据
+    public void SetRoleData(RoleData role)
+    {
+        Debug.Log("==== SetRoleData 被调用：" + (role != null ? role.charName : "null"));
+        CurrentChar = role;
+
+        // 清空聊天记录
+        ClearAllChat();
+
+        // 更新角色名
+        if (charNameText != null && CurrentChar != null)
+        {
+            charNameText.text = CurrentChar.charName;
+            //角色名称优先中文字体
+            if (chineseFont != null)
+                charNameText.font = chineseFont;
+            else if (englishFont != null)
+                charNameText.font = englishFont;
+        }
+
+        // 欢迎语改成中文
+        if (CurrentChar != null)
+            AddAIMessage($"你好，我是{CurrentChar.charName}");
+    }
+
+    // 清空所有气泡
+    void ClearAllChat()
+    {
+        foreach (Transform t in content)
+            Destroy(t.gameObject);
+    }
+
+    void Start()
+    {
+        if (sendBtn != null)
+            sendBtn.onClick.AddListener(SendMessage);
+    }
+
+    public void SendMessage()
+    {
+        // 1. 输入框为空直接返回
+        if (inputField == null || string.IsNullOrEmpty(inputField.text.Trim()))
+        {
+            Debug.LogError("输入框为空，无法发送！");
+            return;
+        }
+
+        // 2. 关键：如果角色数据为空，只打日志，不添加错误气泡
+        if (CurrentChar == null)
+        {
+            Debug.LogError("角色数据为空！请重新进入对话界面。");
+            return;
+        }
+
+        string msg = inputField.text.Trim();
+        AddPlayerMessage(msg);
+        inputField.text = "";
+        RequestAIReply(msg);
+    }
+
+    void RequestAIReply(string userMsg)
+    {
+        if (CurrentChar == null)
+        {
+            Debug.LogError("发送AI请求时，角色数据为空！");
+            return;
+        }
+        // System角色设定+强制规则
+        string systemPrompt = $@"
+你将扮演{CurrentChar.charName}，全程只使用简体中文对话，绝对禁止输出任何英文字母、英文单词、字母缩写、外文符号,绝不跳出人物设定。
+人物性格：{CurrentChar.personality}
+人物背景：{CurrentChar.background}
+
+硬性约束：
+1. 严格按照人设回答用户问题，不能跑题，全程只用简体中文。
+2.只用自然口语简体中文，只回复单独一句话，禁止换行、多段落。
+3.全文不能出现任意英文字母a-z/A-Z、数字缩写、外来词，出现字母视为违规。
+4.不额外解释、不加备注，只输出回答正文。
+";
+        string userPrompt = userMsg;
+
+        StartCoroutine(RequestZhipuAI(systemPrompt, userPrompt));
+    }
+
+    IEnumerator RequestZhipuAI(string systemPrompt, string userPrompt)
+    {
+        string url = "https://api.siliconflow.cn/v1/chat/completions";
+        string apiKey = "sk-ljjdlppjgidehmjhgadyhlwsygkmqluuivfpzaclybehsooc";
+        string model = "qwen/Qwen2.5-7B-Instruct";
+
+        ChatRequest requestData = new ChatRequest
+        {
+            model = model,
+            messages = new List<ChatMessage>
+            {
+                new ChatMessage { role = "system", content = systemPrompt },
+                new ChatMessage { role = "user", content = userPrompt }
+            }
+        };
+
+        string json = JsonUtility.ToJson(requestData);
+        byte[] postData = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
+        {
+            www.uploadHandler = new UploadHandlerRaw(postData);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + apiKey);
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string reply = ParseReply(www.downloadHandler.text);
+                //过滤全部英文字母兜底
+                reply = FilterAllEnglishChar(reply);
+                AddAIMessage(reply);
+            }
+            else
+            {
+                AddAIMessage("网络连接出错了。");
+                Debug.LogError("API错误：" + www.error);
+            }
+        }
+    }
+
+    //过滤所有英文字母
+    string FilterAllEnglishChar(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return input;
+        StringBuilder sb = new StringBuilder();
+        foreach (char c in input)
+        {
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
+            {
+                sb.Append(c);
+            }
+        }
+        return sb.ToString().Trim();
+    }
+
+    // 解析JSON：清理转义字符
+    string ParseReply(string json)
+    {
+        try
+        {
+            int start = json.IndexOf("\"content\":\"") + 11;
+            int end = json.IndexOf("\"", start);
+            string reply = json.Substring(start, end - start);
+            reply = reply.Replace("\\n", "").Replace("\\r", "").Replace("\\\"", "\"");
+            reply = reply.Trim();
             return reply;
         }
         catch
