@@ -566,13 +566,27 @@ public class AIDialogController : MonoBehaviour
     //新增：挂载你做好的中文字体资源
     public TMP_FontAsset chineseFont;
     public ScrollRect scrollRect;
+    //发送锁，提升性能
+    private bool isWaitingForReply = false;
+    private bool isSendingThisFrame = false;
 
     // 角色数据：只在SetRoleData里赋值，只读保护
-    private RoleData _currentChar;
-    public RoleData CurrentChar
+    //private RoleData _currentChar;
+    //public RoleData CurrentChar
+    //{
+    //   get { return _currentChar; }
+    //    private set { _currentChar = value; }
+    //}
+    // 移除私有的 _currentChar 字段，改用动态属性
+    private RoleData CurrentChar
     {
-        get { return _currentChar; }
-        private set { _currentChar = value; }
+        get
+        {
+            // 优先从 UIManager 获取
+            if (UIManager.Instance != null)
+                return UIManager.Instance.GetCurrentSelectedRole();
+            return null;
+        }
     }
 
     void Awake()
@@ -581,7 +595,45 @@ public class AIDialogController : MonoBehaviour
             returnButton.onClick.AddListener(() => UIManager.Instance.BackToDetail());
     }
 
+    void OnDestroy()
+    {
+        Debug.Log($"AIDialogController 被销毁，当前角色：{(CurrentChar != null ? CurrentChar.charName : "null")}");
+    }
+
+    // 不再需要 SetRoleData 来保存角色（但保留方法以兼容旧代码）
+    public void SetRoleData(RoleData role)
+    {
+        Debug.Log("==== SetRoleData 被调用：" + (role != null ? role.charName : "null"));
+        // 将角色数据同步给 UIManager
+        if (UIManager.Instance != null)
+        {
+            // 如果 UIManager 当前没有选中角色，则设置它
+            if (UIManager.Instance.GetCurrentSelectedRole() == null)
+            {
+                // 需要 UIManager 提供 SetCurrentSelectedRole 方法
+                UIManager.Instance.SetCurrentSelectedRole(role);
+            }
+        }
+
+        // 清空聊天记录
+        ClearAllChat();
+
+        // 更新角色名
+        if (charNameText != null && role != null)
+        {
+            charNameText.text = role.charName;
+            if (chineseFont != null)
+                charNameText.font = chineseFont;
+            else if (englishFont != null)
+                charNameText.font = englishFont;
+        }
+
+        // 欢迎语
+        if (role != null)
+            AddAIMessage($"你好，我是{role.charName}");
+    }
     // 外部唯一入口：设置角色数据
+    /*
     public void SetRoleData(RoleData role)
     {
         Debug.Log("==== SetRoleData 被调用：" + (role != null ? role.charName : "null"));
@@ -605,6 +657,7 @@ public class AIDialogController : MonoBehaviour
         if (CurrentChar != null)
             AddAIMessage($"你好，我是{CurrentChar.charName}");
     }
+    */
 
     // 清空所有气泡
     void ClearAllChat()
@@ -615,10 +668,73 @@ public class AIDialogController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log($"AIDialogController 实例 ID: {GetInstanceID()}, 物体名称: {gameObject.name}");
+
         if (sendBtn != null)
+        {
+            sendBtn.onClick.RemoveListener(SendMessage); // 先移除再添加，避免重复
             sendBtn.onClick.AddListener(SendMessage);
+        }
+        // 关键：清除所有可能触发发送的输入框事件
+        if (inputField != null)
+        {
+            inputField.onSubmit.RemoveAllListeners();
+            inputField.onEndEdit.RemoveAllListeners();
+        }
+    }
+    public void SendMessage()
+    {
+        //调试
+        Debug.Log($"SendMessage 被调用，时间：{Time.time}\n调用栈：{StackTraceUtility.ExtractStackTrace()}");
+        if (isSendingThisFrame)
+        {
+            Debug.Log("同一帧内重复调用，已忽略");
+            return;
+        }
+        isSendingThisFrame = true;
+        StartCoroutine(ResetSendingFlag());
+
+        // 如果正在等待回复，不允许再次发送
+        if (isWaitingForReply)
+        {
+            Debug.Log("正在等待AI回复，请勿重复发送");
+            return;
+        }
+
+        if (inputField == null || string.IsNullOrEmpty(inputField.text.Trim()))
+        {
+            Debug.LogError("输入框为空，无法发送！");
+            return;
+        }
+
+        RoleData currentRole = CurrentChar;
+        if (currentRole == null)
+        {
+            Debug.LogError("角色数据为空！请重新进入对话界面。");
+            return;
+        }
+
+        // 锁定发送，并禁用发送按钮（可选）
+        isWaitingForReply = true;
+        if (sendBtn != null) sendBtn.interactable = false;
+
+        string msg = inputField.text.Trim();
+        AddPlayerMessage(msg);
+        inputField.text = "";
+
+        // 启用输入框（如果之前被禁用，这里确保可用）
+        if (inputField != null) inputField.interactable = true;
+
+        // 启动协程，并在内部解锁
+        StartCoroutine(RequestAIReply(msg));
+    }
+    private System.Collections.IEnumerator ResetSendingFlag()
+    {
+        yield return null; // 等待下一帧
+        isSendingThisFrame = false;
     }
 
+    /* SendMessage()
     public void SendMessage()
     {
         // 1. 输入框为空直接返回
@@ -640,19 +756,24 @@ public class AIDialogController : MonoBehaviour
         inputField.text = "";
         RequestAIReply(msg);
     }
+    */
 
-    void RequestAIReply(string userMsg)
+    IEnumerator RequestAIReply(string userMsg)
     {
-        if (CurrentChar == null)
+        RoleData currentRole = CurrentChar;
+        if (currentRole == null)
         {
             Debug.LogError("发送AI请求时，角色数据为空！");
-            return;
+            // 解锁（因为无法继续）
+            isWaitingForReply = false;
+            if (sendBtn != null) sendBtn.interactable = true;
+            yield break;
         }
         // System角色设定+强制规则
         string systemPrompt = $@"
-你将扮演{CurrentChar.charName}，全程只使用简体中文对话，绝对禁止输出任何英文字母、英文单词、字母缩写、外文符号,绝不跳出人物设定。
-人物性格：{CurrentChar.personality}
-人物背景：{CurrentChar.background}
+你将扮演{currentRole.charName}，全程只使用简体中文对话，绝对禁止输出任何英文字母、英文单词、字母缩写、外文符号,绝不跳出人物设定。
+人物性格：{currentRole.personality}
+人物背景：{currentRole.background}
 
 硬性约束：
 1. 严格按照人设回答用户问题，不能跑题，全程只用简体中文。
@@ -662,7 +783,12 @@ public class AIDialogController : MonoBehaviour
 ";
         string userPrompt = userMsg;
 
-        StartCoroutine(RequestZhipuAI(systemPrompt, userPrompt));
+        // 等待协程完成
+        yield return StartCoroutine(RequestZhipuAI(systemPrompt, userPrompt));
+
+        // 协程完成后解锁
+        isWaitingForReply = false;
+        if (sendBtn != null) sendBtn.interactable = true;
     }
 
     IEnumerator RequestZhipuAI(string systemPrompt, string userPrompt)
