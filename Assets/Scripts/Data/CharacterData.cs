@@ -4,13 +4,12 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterData
 {
-    public string characterID;          // ��ɫID
-    public string characterName;        // ��ɫ����
-    public Sprite characterPortrait;    // ��ɫ����/ͷ��
-    public Sprite fullBodyImage;        // ȫ����
-    public string description;          // ��ɫ����
-    public string[] relationshipQuotes;  // ��ϵ��¼
+    public string characterID;          
+    public string characterName;        
+    public Sprite characterPortrait;    
+    public Sprite fullBodyImage;        
+    public string description;          
+    public string[] relationshipQuotes;  
 
-    // �øжȵ���ֵ
     public int affectionLevel;
 }

@@ -3,24 +3,24 @@ using UnityEngine;
 
 public static class SettingsManager
 {
-    // PlayerPrefsµÄKey³£Á¿
+    // PlayerPrefsçš„Keyå¸¸é‡
     private const string MUSIC_VOLUME_KEY = "MusicVolume";
     private const string SE_VOLUME_KEY = "SoundEffectVolume";
     private const string TEXT_SPEED_KEY = "TextSpeed";
 
-    // ÒôÀÖÒôÁ¿£¨0~1µÄ¸¡µãÊý£©
+    // éŸ³ä¹éŸ³é‡ï¼ˆ0~1çš„æµ®ç‚¹æ•°ï¼‰
     public static float MusicVolume
     {
-        // PlayerPrefs.GetFloat(¼üÃû, Ä¬ÈÏÖµ)
+        // PlayerPrefs.GetFloat(é”®å, é»˜è®¤å€¼)
         get => PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 0.8f);
         set
         {
             PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, value);
-            PlayerPrefs.Save(); // Á¢¼´Ð´Èë´ÅÅÌ
+            PlayerPrefs.Save(); // ç«‹å³å†™å…¥ç£ç›˜
         }
     }
 
-    // ÒôÐ§ÒôÁ¿
+    // éŸ³æ•ˆéŸ³é‡
     public static float SEVolume
     {
         get => PlayerPrefs.GetFloat(SE_VOLUME_KEY, 1f);
@@ -31,7 +31,7 @@ public static class SettingsManager
         }
     }
 
-    // ÎÄ±¾ËÙ¶È£¨Ã¿¸ö×ÖµÄÏÔÊ¾¼ä¸ô£¬µ¥Î»£ºÃë£©
+    // æ–‡æœ¬é€Ÿåº¦ï¼ˆæ¯ä¸ªå­—çš„æ˜¾ç¤ºé—´éš”ï¼Œå•ä½ï¼šç§’ï¼‰
     public static float TextSpeed
     {
         get => PlayerPrefs.GetFloat(TEXT_SPEED_KEY, 0.05f);

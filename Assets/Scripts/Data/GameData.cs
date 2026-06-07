@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
 
-//Õâ¸ö±ê¼Ç¸æËßunityÕâ¸öÀà¿ÉÒÔ±»ĞòÁĞ»¯³ÉJSON¸ñÊ½´æ´¢
-//List & Dictionary¶¼ÊÇ¿ÉĞòÁĞ»¯µÄ
+//è¿™ä¸ªæ ‡è®°å‘Šè¯‰unityè¿™ä¸ªç±»å¯ä»¥è¢«åºåˆ—åŒ–æˆJSONæ ¼å¼å­˜å‚¨
+//List & Dictionaryéƒ½æ˜¯å¯åºåˆ—åŒ–çš„
 [Serializable]
 public class GameData
 {
-    //µ±Ç°³¡¾°Ë÷Òı£¬ÓÃÓÚ¶ÁµµÊ±¼ÓÔØ³¡¾°
+    //å½“å‰åœºæ™¯ç´¢å¼•ï¼Œç”¨äºè¯»æ¡£æ—¶åŠ è½½åœºæ™¯
     public int currentSceneIndex;
-    //µ±Ç°¶Ô»°ID£¬ÓÃÓÚ¶ÁµµÊ±»Ö¸´¶Ô»°½ø¶È
+    //å½“å‰å¯¹è¯IDï¼Œç”¨äºè¯»æ¡£æ—¶æ¢å¤å¯¹è¯è¿›åº¦
     public string currentDialogueID;
-    //µ±Ç°ÒÑÊÕ¼¯µ½µÄµÀ¾ß
+    //å½“å‰å·²æ”¶é›†åˆ°çš„é“å…·
     public List<string> collectedItems = new List<string>();
-    //µ±Ç°ÒÑ´¥·¢µÄ¾çÇéflag
+    //å½“å‰å·²è§¦å‘çš„å‰§æƒ…flag
     public List<string> triggeredFlags = new List<string>();
-    //ÌØÊâÊôĞÔÃæ°åÖµ
+    //ç‰¹æ®Šå±æ€§é¢æ¿å€¼
     public Dictionary<string, int> attributes = new Dictionary<string, int>();
-    //´æµµÊ±¼ä
+    //å­˜æ¡£æ—¶é—´
     public string saveTime;
-    //´æµµµÄÎÄ¼şÃû
+    //å­˜æ¡£çš„æ–‡ä»¶å
     public string screenshotName;
 }

@@ -1,45 +1,45 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;   // Ê¹ÓÃ TextMeshPro
+using TMPro;   // ä½¿ç”¨ TextMeshPro
 
 public class SaveLoadUI : MonoBehaviour
 {
-    [Header("´æµµ²Û°´Å¥")]
+    [Header("å­˜æ¡£æ§½æŒ‰é’®")]
     public Button[] saveSlotButtons;
 
-    [Header("¶ÁµµÄ£Ê½ Toggle")]
-    public Toggle readModeToggle;   // ÍÏÈëÃûÎª "Read" µÄ Toggle£¬¹´Ñ¡=¶ÁµµÄ£Ê½
+    [Header("è¯»æ¡£æ¨¡å¼ Toggle")]
+    public Toggle readModeToggle;   // æ‹–å…¥åä¸º "Read" çš„ Toggleï¼Œå‹¾é€‰=è¯»æ¡£æ¨¡å¼
 
-    private bool isSaveMode = true;   // true=´æµµÄ£Ê½, false=¶ÁµµÄ£Ê½
+    private bool isSaveMode = true;   // true=å­˜æ¡£æ¨¡å¼, false=è¯»æ¡£æ¨¡å¼
 
     void Start()
     {
         if (saveSlotButtons == null || saveSlotButtons.Length == 0)
         {
-            Debug.LogError("SaveLoadUI: Ã»ÓĞÖ¸¶¨´æµµ²Û°´Å¥£¡");
+            Debug.LogError("SaveLoadUI: æ²¡æœ‰æŒ‡å®šå­˜æ¡£æ§½æŒ‰é’®ï¼");
             return;
         }
 
         if (readModeToggle != null)
         {
-            // ³õÊ¼»¯£ºToggle ¹´Ñ¡×´Ì¬ = ¶ÁµµÄ£Ê½ = isSaveMode = false
-            readModeToggle.isOn = !isSaveMode;   // ¼ÙÈçÄ¬ÈÏÊÇ´æµµÄ£Ê½£¬Ôò Toggle Î´¹´Ñ¡
+            // åˆå§‹åŒ–ï¼šToggle å‹¾é€‰çŠ¶æ€ = è¯»æ¡£æ¨¡å¼ = isSaveMode = false
+            readModeToggle.isOn = !isSaveMode;   // å‡å¦‚é»˜è®¤æ˜¯å­˜æ¡£æ¨¡å¼ï¼Œåˆ™ Toggle æœªå‹¾é€‰
             readModeToggle.onValueChanged.AddListener(OnReadToggleChanged);
         }
         else
         {
-            Debug.LogWarning("SaveLoadUI: Î´°ó¶¨ Read Toggle£¬½«ÎŞ·¨ÇĞ»»Ä£Ê½");
+            Debug.LogWarning("SaveLoadUI: æœªç»‘å®š Read Toggleï¼Œå°†æ— æ³•åˆ‡æ¢æ¨¡å¼");
         }
 
         RefreshSlots();
     }
 
-    // Toggle Öµ¸Ä±äÊ±µ÷ÓÃ£º¹´Ñ¡ -> ¶ÁµµÄ£Ê½ (isSaveMode = false)
+    // Toggle å€¼æ”¹å˜æ—¶è°ƒç”¨ï¼šå‹¾é€‰ -> è¯»æ¡£æ¨¡å¼ (isSaveMode = false)
     private void OnReadToggleChanged(bool isOn)
     {
-        // isOn Îª true ±íÊ¾ Read ±»¹´Ñ¡ ¡ú ¶ÁµµÄ£Ê½
-        isSaveMode = !isOn;   // ¹´Ñ¡Ê± isSaveMode = false£¬Î´¹´Ñ¡Ê± isSaveMode = true
+        // isOn ä¸º true è¡¨ç¤º Read è¢«å‹¾é€‰ â†’ è¯»æ¡£æ¨¡å¼
+        isSaveMode = !isOn;   // å‹¾é€‰æ—¶ isSaveMode = falseï¼Œæœªå‹¾é€‰æ—¶ isSaveMode = true
         RefreshSlots();
     }
 
@@ -54,12 +54,12 @@ public class SaveLoadUI : MonoBehaviour
             Button btn = saveSlotButtons[i];
             if (btn == null) continue;
 
-            // »ñÈ¡ÎÄ±¾×é¼ş£¨Ö§³Ö¾É°æ Text ºÍ TMP£©
+            // è·å–æ–‡æœ¬ç»„ä»¶ï¼ˆæ”¯æŒæ—§ç‰ˆ Text å’Œ TMPï¼‰
             Text textLegacy = btn.GetComponentInChildren<Text>();
             TMP_Text textTMP = btn.GetComponentInChildren<TMP_Text>();
             if (textLegacy == null && textTMP == null)
             {
-                Debug.LogError($"°´Å¥[{i}] È±ÉÙÎÄ±¾×é¼ş£¡");
+                Debug.LogError($"æŒ‰é’®[{i}] ç¼ºå°‘æ–‡æœ¬ç»„ä»¶ï¼");
                 continue;
             }
 
@@ -71,15 +71,15 @@ public class SaveLoadUI : MonoBehaviour
 
             if (!slot.isEmpty)
             {
-                // ÓĞ´æµµÊı¾İ
-                displayText = $"´æµµ {slot.slotIndex}\n{slot.saveTime}";
-                interactable = true;   // ÓĞÊı¾İµÄ²ÛÔÚÁ½ÖÖÄ£Ê½ÏÂ¶¼¿ÉÓÃ
+                // æœ‰å­˜æ¡£æ•°æ®
+                displayText = $"å­˜æ¡£ {slot.slotIndex}\n{slot.saveTime}";
+                interactable = true;   // æœ‰æ•°æ®çš„æ§½åœ¨ä¸¤ç§æ¨¡å¼ä¸‹éƒ½å¯ç”¨
             }
             else
             {
-                // ¿Õ²Û
-                displayText = $"´æµµ {i + 1}\n[¿Õ]";
-                interactable = isSaveMode;   // Ö»ÓĞ´æµµÄ£Ê½ÏÂ¿Õ²Û²Å¿Éµã£¨ĞÂ½¨´æµµ£©
+                // ç©ºæ§½
+                displayText = $"å­˜æ¡£ {i + 1}\n[ç©º]";
+                interactable = isSaveMode;   // åªæœ‰å­˜æ¡£æ¨¡å¼ä¸‹ç©ºæ§½æ‰å¯ç‚¹ï¼ˆæ–°å»ºå­˜æ¡£ï¼‰
             }
 
             if (textLegacy != null) textLegacy.text = displayText;
@@ -93,33 +93,33 @@ public class SaveLoadUI : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= saveSlotButtons.Length)
         {
-            Debug.LogError($"ÎŞĞ§²ÛÎ»Ë÷Òı {slotIndex}");
+            Debug.LogError($"æ— æ•ˆæ§½ä½ç´¢å¼• {slotIndex}");
             return;
         }
 
         if (isSaveMode)
         {
-            // ´æµµÄ£Ê½
+            // å­˜æ¡£æ¨¡å¼
             SaveManager.SaveGame(slotIndex);
         }
         else
         {
-            // ¶ÁµµÄ£Ê½£ºÈ·±£²ÛÎ»·Ç¿Õ
+            // è¯»æ¡£æ¨¡å¼ï¼šç¡®ä¿æ§½ä½éç©º
             List<SaveSlotInfo> slots = SaveManager.GetSaveSlots();
             if (slotIndex < slots.Count && !slots[slotIndex].isEmpty)
                 SaveManager.LoadGame(slotIndex);
             else
-                Debug.LogWarning($"²ÛÎ» {slotIndex} Îª¿Õ£¬ÎŞ·¨¶Áµµ");
+                Debug.LogWarning($"æ§½ä½ {slotIndex} ä¸ºç©ºï¼Œæ— æ³•è¯»æ¡£");
         }
         RefreshSlots();
     }
 
-    // ¿ÉÑ¡£ºÍâ²¿ÊÖ¶¯ÉèÖÃÄ£Ê½£¨ÀıÈçÓÃ°´Å¥µ÷ÓÃ£©
+    // å¯é€‰ï¼šå¤–éƒ¨æ‰‹åŠ¨è®¾ç½®æ¨¡å¼ï¼ˆä¾‹å¦‚ç”¨æŒ‰é’®è°ƒç”¨ï¼‰
     public void SetSaveMode(bool save)
     {
         isSaveMode = save;
         if (readModeToggle != null)
-            readModeToggle.isOn = !save;   // Í¬²½ Toggle ÏÔÊ¾£º´æµµÄ£Ê½ -> Î´¹´Ñ¡
+            readModeToggle.isOn = !save;   // åŒæ­¥ Toggle æ˜¾ç¤ºï¼šå­˜æ¡£æ¨¡å¼ -> æœªå‹¾é€‰
         else
             RefreshSlots();
     }

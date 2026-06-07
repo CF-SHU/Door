@@ -1,16 +1,16 @@
 //GameSaveBootstrap.cs
-//´´½¨Ò»¸ö³Ö¾Ã»¯µÄgameObjectÀ´³õÊ¼»¯´æµµÏµÍ³
+//åˆ›å»ºä¸€ä¸ªæŒä¹…åŒ–çš„gameObjectæ¥åˆå§‹åŒ–å­˜æ¡£ç³»ç»Ÿ
 using UnityEngine;
 
 public class GameSaveBootstrap : MonoBehaviour
 {
-    //AwakeÔÚStartÇ°Ö´ĞĞ£¬ÊÊºÏ³õÊ¼»¯¹¤×÷
+    //Awakeåœ¨Startå‰æ‰§è¡Œï¼Œé€‚åˆåˆå§‹åŒ–å·¥ä½œ
     private void Awake()
     {
         SaveManager.Initialize();
 
-        //DontDestroyOnLoad: ÈÃÕâ¸ögameObjectÔÚÇĞ»»³¡¾°Ê±²»±»Ïú»Ù
-        //È«¾Ö¹ÜÀí
+        //DontDestroyOnLoad: è®©è¿™ä¸ªgameObjectåœ¨åˆ‡æ¢åœºæ™¯æ—¶ä¸è¢«é”€æ¯
+        //å…¨å±€ç®¡ç†
         DontDestroyOnLoad(gameObject);
     }
     // use this for initialization

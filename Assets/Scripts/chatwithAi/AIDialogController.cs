@@ -703,8 +703,8 @@ public class AIDialogController : MonoBehaviour
 
         if (inputField == null || string.IsNullOrEmpty(inputField.text.Trim()))
         {
-            Debug.LogError("输入框为空，无法发送！");
-            return;
+            Debug.LogWarning("输入框为空，无法发送！");
+            //return;
         }
 
         RoleData currentRole = CurrentChar;

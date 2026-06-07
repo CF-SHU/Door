@@ -1,7 +1,7 @@
 // UIPanelManager.cs
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;  // Èç¹ûĞèÒªÓÃ FirstOrDefault£¬¿ÉÒÔ¼ÓÉÏ
+using System.Linq;  // å¦‚æœéœ€è¦ç”¨ FirstOrDefaultï¼Œå¯ä»¥åŠ ä¸Š
 
 public class UIPanelManager : MonoBehaviour
 {
@@ -11,19 +11,19 @@ public class UIPanelManager : MonoBehaviour
 
     void Start()
     {
-        // 1. ×¢²áËùÓĞÖ±½Ó×Ó¶ÔÏó
+        // 1. æ³¨å†Œæ‰€æœ‰ç›´æ¥å­å¯¹è±¡
         foreach (Transform child in transform)
         {
             panels[child.name] = child.gameObject;
         }
 
-        // 2. ÏÈ°ÑËùÓĞÃæ°å¶¼¹Øµô
+        // 2. å…ˆæŠŠæ‰€æœ‰é¢æ¿éƒ½å…³æ‰
         foreach (var panel in panels.Values)
         {
             panel.SetActive(false);
         }
 
-        // 3. ÕÒµ½Ö÷²Ëµ¥Ãæ°å²¢¼¤»îËü£¨¼ÙÉèÃû×ÖÊÇ "MainMenuPanel"£©
+        // 3. æ‰¾åˆ°ä¸»èœå•é¢æ¿å¹¶æ¿€æ´»å®ƒï¼ˆå‡è®¾åå­—æ˜¯ "MainMenuPanel"ï¼‰
         if (panels.ContainsKey("MainMenuPanel"))
         {
             currentPanel = panels["MainMenuPanel"];
@@ -31,7 +31,7 @@ public class UIPanelManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ÕÒ²»µ½ MainMenuPanel£¡Çë¼ì²é Hierarchy ÖĞµÄÃæ°åÃüÃû¡£");
+            Debug.LogError("æ‰¾ä¸åˆ° MainMenuPanelï¼è¯·æ£€æŸ¥ Hierarchy ä¸­çš„é¢æ¿å‘½åã€‚");
         }
     }
 
@@ -39,18 +39,18 @@ public class UIPanelManager : MonoBehaviour
     {
         if (!panels.ContainsKey(panelName))
         {
-            Debug.LogError($"Ãæ°å '{panelName}' ²»´æÔÚ£¡");
+            Debug.LogError($"é¢æ¿ '{panelName}' ä¸å­˜åœ¨ï¼");
             return;
         }
 
-        // Òş²Øµ±Ç°Ãæ°å£¬²¢Ñ¹ÈëÀúÊ·Õ»
+        // éšè—å½“å‰é¢æ¿ï¼Œå¹¶å‹å…¥å†å²æ ˆ
         if (currentPanel != null)
         {
             currentPanel.SetActive(false);
             panelHistory.Push(currentPanel);
         }
 
-        // ÏÔÊ¾ĞÂÃæ°å
+        // æ˜¾ç¤ºæ–°é¢æ¿
         currentPanel = panels[panelName];
         currentPanel.SetActive(true);
     }
@@ -67,9 +67,9 @@ public class UIPanelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÒÑ¾­ÊÇ×îÉÏ²ãÃæ°å£¬ÎŞ·¨·µ»Ø¡£");
+            Debug.Log("å·²ç»æ˜¯æœ€ä¸Šå±‚é¢æ¿ï¼Œæ— æ³•è¿”å›ã€‚");
         }
-        Debug.Log("GoBack ±»µ÷ÓÃ£¬µ±Ç°Õ»Éî¶È£º" + panelHistory.Count);
+        Debug.Log("GoBack è¢«è°ƒç”¨ï¼Œå½“å‰æ ˆæ·±åº¦ï¼š" + panelHistory.Count);
 
     }
 }

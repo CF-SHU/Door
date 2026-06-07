@@ -4,34 +4,34 @@ using UnityEngine.SceneManagement;
 
 public class EndingManager : MonoBehaviour
 {
-    [Header("½á¾ÖÉèÖÃ")]
-    public string endingID;         // ½á¾ÖID£¨Èç"good_ending", "bad_ending"£©
-    public string endingName;       // ½á¾ÖÃû³Æ
+    [Header("ç»“å±€è®¾ç½®")]
+    public string endingID;         // ç»“å±€IDï¼ˆå¦‚"good_ending", "bad_ending"ï¼‰
+    public string endingName;       // ç»“å±€åç§°
     [TextArea(3, 5)]
-    public string endingDescription; // ½á¾ÖÃèÊö
+    public string endingDescription; // ç»“å±€æè¿°
 
-    // ´¥·¢½á¾Ö
+    // è§¦å‘ç»“å±€
     public void TriggerEnding()
     {
-        // ¼ÇÂ¼´ï³ÉµÄ½á¾Ö
+        // è®°å½•è¾¾æˆçš„ç»“å±€
         if (!SaveManager.CurrentData.triggeredFlags.Contains(endingID))
         {
             SaveManager.CurrentData.triggeredFlags.Add(endingID);
         }
 
-        // ×Ô¶¯´æµµ
+        // è‡ªåŠ¨å­˜æ¡£
         SaveManager.AutoSave();
 
-        // ÏÔÊ¾½á¾Ö»­Ãæ£¨¿ÉÒÔÍ¨¹ıUIÃæ°åÕ¹Ê¾£©
+        // æ˜¾ç¤ºç»“å±€ç”»é¢ï¼ˆå¯ä»¥é€šè¿‡UIé¢æ¿å±•ç¤ºï¼‰
         StartCoroutine(ShowEndingAndReturn());
     }
 
     System.Collections.IEnumerator ShowEndingAndReturn()
     {
-        // ÏÔÊ¾½á¾Ö»­Ãæ£¬µÈ´ı¼¸Ãë
+        // æ˜¾ç¤ºç»“å±€ç”»é¢ï¼Œç­‰å¾…å‡ ç§’
         yield return new WaitForSeconds(5f);
 
-        // ·µ»ØÖ÷²Ëµ¥
+        // è¿”å›ä¸»èœå•
         SceneManager.LoadScene("MainMenu");
     }
 }

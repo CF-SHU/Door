@@ -4,36 +4,36 @@ using UnityEngine.Events;
 
 public class InteractiveObject : MonoBehaviour
 {
-    [Header("»¥¶¯Ìõ¼ş")]
-    public string requiredItemID;       // ĞèÒªµÄµÀ¾ßID£¨¿Õ±íÊ¾²»ĞèÒª£©
-    public bool isDone;                 // »¥¶¯ÊÇ·ñÒÑÍê³É
-    public string interactionFlag;       // »¥¶¯Íê³ÉµÄ±ê¼ÇID
+    [Header("äº’åŠ¨æ¡ä»¶")]
+    public string requiredItemID;       // éœ€è¦çš„é“å…·IDï¼ˆç©ºè¡¨ç¤ºä¸éœ€è¦ï¼‰
+    public bool isDone;                 // äº’åŠ¨æ˜¯å¦å·²å®Œæˆ
+    public string interactionFlag;       // äº’åŠ¨å®Œæˆçš„æ ‡è®°ID
 
-    [Header("»¥¶¯·´À¡")]
-    public string hoverMessage;          // Êó±êĞüÍ£ÌáÊ¾
-    //public DialogueLine[] dialogueBefore; // »¥¶¯Ç°µÄ¶Ô»°
-    //public DialogueLine[] dialogueAfter;  // »¥¶¯ºóµÄ¶Ô»°
+    [Header("äº’åŠ¨åé¦ˆ")]
+    public string hoverMessage;          // é¼ æ ‡æ‚¬åœæç¤º
+    //public DialogueLine[] dialogueBefore; // äº’åŠ¨å‰çš„å¯¹è¯
+    //public DialogueLine[] dialogueAfter;  // äº’åŠ¨åçš„å¯¹è¯
 
-    [Header("»¥¶¯ÊÂ¼ş")]
-    public UnityEvent onInteractSuccess;  // »¥¶¯³É¹¦Ê±´¥·¢µÄÊÂ¼ş
+    [Header("äº’åŠ¨äº‹ä»¶")]
+    public UnityEvent onInteractSuccess;  // äº’åŠ¨æˆåŠŸæ—¶è§¦å‘çš„äº‹ä»¶
 
-    // ±»µã»÷Ê±µ÷ÓÃ
+    // è¢«ç‚¹å‡»æ—¶è°ƒç”¨
     public virtual void OnInteract()
     {
-        // ¼ì²éÊÇ·ñĞèÒªÌØ¶¨µÀ¾ß
+        // æ£€æŸ¥æ˜¯å¦éœ€è¦ç‰¹å®šé“å…·
         if (!string.IsNullOrEmpty(requiredItemID))
         {
             if (!SaveManager.CurrentData.collectedItems.Contains(requiredItemID))
             {
-                // Ã»ÓĞËùĞèµÀ¾ß£¬ÏÔÊ¾ÌáÊ¾¶Ô»°
-                Debug.Log($"ĞèÒªµÀ¾ß£º{requiredItemID}");
+                // æ²¡æœ‰æ‰€éœ€é“å…·ï¼Œæ˜¾ç¤ºæç¤ºå¯¹è¯
+                Debug.Log($"éœ€è¦é“å…·ï¼š{requiredItemID}");
                 //if (dialogueBefore.Length > 0)
                 //    DialogueSystem.Instance.StartDialogue(dialogueBefore);
                 return;
             }
         }
 
-        // »¥¶¯³É¹¦
+        // äº’åŠ¨æˆåŠŸ
         if (!isDone)
         {
             isDone = true;
@@ -47,16 +47,16 @@ public class InteractiveObject : MonoBehaviour
         }
         else
         {
-            // ÒÑ¾­»¥¶¯¹ıÁË£¬ÏÔÊ¾ºóĞø¶Ô»°
+            // å·²ç»äº’åŠ¨è¿‡äº†ï¼Œæ˜¾ç¤ºåç»­å¯¹è¯
             //if (dialogueAfter.Length > 0)
             //    DialogueSystem.Instance.StartDialogue(dialogueAfter);
         }
     }
 
-    // Êó±êµã»÷¼ì²â
+    // é¼ æ ‡ç‚¹å‡»æ£€æµ‹
     void OnMouseDown()
     {
-        // ·¢ÉäÒ»ÌõÉäÏß£¬¼ì²âÊÇ·ñµã»÷µ½ÁË×Ô¼º
+        // å‘å°„ä¸€æ¡å°„çº¿ï¼Œæ£€æµ‹æ˜¯å¦ç‚¹å‡»åˆ°äº†è‡ªå·±
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
@@ -66,10 +66,10 @@ public class InteractiveObject : MonoBehaviour
         }
     }
 
-    // Êó±êĞüÍ£Ê±¸Ä±ä¹â±ê
+    // é¼ æ ‡æ‚¬åœæ—¶æ”¹å˜å…‰æ ‡
     void OnMouseEnter()
     {
-        // ¿ÉÒÔÔÚÕâÀï¸Ä±äÊó±êÑùÊ½
+        // å¯ä»¥åœ¨è¿™é‡Œæ”¹å˜é¼ æ ‡æ ·å¼
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }

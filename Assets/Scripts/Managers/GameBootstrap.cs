@@ -10,10 +10,10 @@ public class GameBootstrap : MonoBehaviour
         SaveManager.Initialize();
         DontDestroyOnLoad(gameObject);
 
-        // Ê×´ÎÆô¶¯Ê±Ó¦ÓÃÒ»´ÎÉèÖÃ
+        // é¦–æ¬¡å¯åŠ¨æ—¶åº”ç”¨ä¸€æ¬¡è®¾ç½®
         ApplySettingsToAllWriters();
 
-        // ³¡¾°¼ÓÔØºóÑÓÊ±Ò»Ö¡ÔÙÓ¦ÓÃ£¨µÈ´ı Fungus UI Éú³É£©
+        // åœºæ™¯åŠ è½½åå»¶æ—¶ä¸€å¸§å†åº”ç”¨ï¼ˆç­‰å¾… Fungus UI ç”Ÿæˆï¼‰
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -24,7 +24,7 @@ public class GameBootstrap : MonoBehaviour
 
     System.Collections.IEnumerator ApplyWriterSpeedNextFrame()
     {
-        yield return null; // µÈÒ»Ö¡
+        yield return null; // ç­‰ä¸€å¸§
         ApplySettingsToAllWriters();
     }
 
@@ -40,7 +40,7 @@ public class GameBootstrap : MonoBehaviour
 
         if (field == null)
         {
-            Debug.LogError("·´Éä»ñÈ¡ writingSpeed Ê§°Ü");
+            Debug.LogError("åå°„è·å– writingSpeed å¤±è´¥");
             return;
         }
 

@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
+    /*
     // 场景加载完成后调用，修复ai聊天bug-角色数据为空
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -59,8 +59,33 @@ public class UIManager : MonoBehaviour
                     chat.SetRoleData(_currentSelectedRole);
             }
         }
-    }
+    } */
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindPanels();
 
+        // 如果面板不存在（例如游戏场景），直接返回，不尝试恢复角色数据
+        if (roleListPanel == null || roleDetailPanel == null || chatPanel == null)
+        {
+            Debug.Log("当前场景没有完整的 UI 面板，跳过角色数据恢复");
+            return;
+        }
+
+        // 如果有选中的角色，恢复数据
+        if (_currentSelectedRole != null)
+        {
+            RoleDetailUI detail = roleDetailPanel.GetComponent<RoleDetailUI>();
+            if (detail != null)
+                detail.SetRoleData(_currentSelectedRole);
+
+            if (chatPanel.activeSelf)
+            {
+                AIDialogController chat = chatPanel.GetComponent<AIDialogController>();
+                if (chat != null)
+                    chat.SetRoleData(_currentSelectedRole);
+            }
+        }
+    }
     // 动态查找面板（根据你场景中的实际命名和层级）
     private void FindPanels()
     {
@@ -68,7 +93,7 @@ public class UIManager : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         if (canvas == null)
         {
-            Debug.LogError("UIManager: 场景中找不到 Canvas 物体！");
+            Debug.LogWarning("UIManager: 场景中找不到 Canvas 物体，当前场景可能不需要 UI 面板");
             return;
         }
 
@@ -77,9 +102,10 @@ public class UIManager : MonoBehaviour
         roleDetailPanel = canvas.transform.Find("CharacterDetail")?.gameObject;
         chatPanel = canvas.transform.Find("ChatPanel")?.gameObject;
 
-        if (roleListPanel == null) Debug.LogError("UIManager: 找不到 CharacterPanel");
-        if (roleDetailPanel == null) Debug.LogError("UIManager: 找不到 CharacterDetail");
-        if (chatPanel == null) Debug.LogError("UIManager: 找不到 ChatPanel");
+        // 改为警告，不中断游戏
+        if (roleListPanel == null) Debug.LogWarning("UIManager: 当前场景没有 CharacterPanel");
+        if (roleDetailPanel == null) Debug.LogWarning("UIManager: 当前场景没有 CharacterDetail");
+        if (chatPanel == null) Debug.LogWarning("UIManager: 当前场景没有 ChatPanel");
     }
 
     // 确保面板引用有效，否则重新查找

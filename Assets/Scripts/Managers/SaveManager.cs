@@ -3,57 +3,57 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//ÕâÀïÓÃstatic±íÃ÷Õû¸öÀà¿ÉÒÔ±»Íâ²¿ÒıÓÃ
+//è¿™é‡Œç”¨staticè¡¨æ˜æ•´ä¸ªç±»å¯ä»¥è¢«å¤–éƒ¨å¼•ç”¨
 public static class SaveManager
 {
-    //Application.persistentDataPath: unityÌá¹©µÄ¿çÆ½Ì¨³Ö¾Ã»¯Êı¾İ´æ´¢Â·¾¶£¬
-    //ÔÚWindowsÉÏÊÇ C:\Users\ÓÃ»§Ãû\AppData\LocalLow\¹«Ë¾Ãû\ÏîÄ¿Ãû£¬´ò°üºó´æµµÎÄ¼ş»á±£´æÔÚÕâÀï¡£
+    //Application.persistentDataPath: unityæä¾›çš„è·¨å¹³å°æŒä¹…åŒ–æ•°æ®å­˜å‚¨è·¯å¾„ï¼Œ
+    //åœ¨Windowsä¸Šæ˜¯ C:\Users\ç”¨æˆ·å\AppData\LocalLow\å…¬å¸å\é¡¹ç›®åï¼Œæ‰“åŒ…åå­˜æ¡£æ–‡ä»¶ä¼šä¿å­˜åœ¨è¿™é‡Œã€‚
     private static string SavePath => Application.persistentDataPath + "/saves";
     private static string AutoSavePath => SavePath + "/autosave.json";
-    //´æµµÊı¾İ´æ´¢,ÎÄ¼şÃû + GameData¶ÔÏó
+    //å­˜æ¡£æ•°æ®å­˜å‚¨,æ–‡ä»¶å + GameDataå¯¹è±¡
     private static Dictionary<string, GameData> saveCache = new Dictionary<string, GameData>();
-    //ÓÎÏ·Êı¾İ
+    //æ¸¸æˆæ•°æ®
     public static GameData CurrentData { get; private set; }
 
-    //³õÊ¼»¯£¨ÓÎÏ·Æô¶¯Ê±µ÷ÓÃ£©
+    //åˆå§‹åŒ–ï¼ˆæ¸¸æˆå¯åŠ¨æ—¶è°ƒç”¨ï¼‰
     public static void Initialize()
     {
         CurrentData = new GameData();
-        //È·±£´æµµÎÄ¼ş¼Ğ´æÔÚ
+        //ç¡®ä¿å­˜æ¡£æ–‡ä»¶å¤¹å­˜åœ¨
         if (!Directory.Exists(SavePath))
             Directory.CreateDirectory(SavePath);
     }
 
-    //±£´æÓÎÏ·µ½´æµµÎ»¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª£¿Json
-    //slotIndex: 1£¬2£¬3...
+    //ä¿å­˜æ¸¸æˆåˆ°å­˜æ¡£ä½â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”ï¼ŸJson
+    //slotIndex: 1ï¼Œ2ï¼Œ3...
     public static void SaveGame(int slotIndex)
     {
         string path = SavePath + "save_" + slotIndex + ".json";
         CurrentData.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        //IsonUtility.ToJson: ½«C#¶ÔÏó×ªÎªJSON×Ö·û´®
+        //IsonUtility.ToJson: å°†C#å¯¹è±¡è½¬ä¸ºJSONå­—ç¬¦ä¸²
         string json = JsonUtility.ToJson(CurrentData, true);
         File.WriteAllText(path, json);
 
-        Debug.Log($"ÓÎÏ·ÒÑ±£´æµ½µµÎ»{slotIndex}:{path}");
+        Debug.Log($"æ¸¸æˆå·²ä¿å­˜åˆ°æ¡£ä½{slotIndex}:{path}");
     }
 
-    //´ÓÖ¸¶¨µµÎ»¶ÁÈ¡´æµµ
+    //ä»æŒ‡å®šæ¡£ä½è¯»å–å­˜æ¡£
     public static void LoadGame(int slotIndex)
     {
         string path = SavePath + "save_" + slotIndex + ".json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            //JsonUtility.FromJson: ½«JSON×Ö·û´®×ª»ØC#¶ÔÏó
+            //JsonUtility.FromJson: å°†JSONå­—ç¬¦ä¸²è½¬å›C#å¯¹è±¡
             CurrentData = JsonUtility.FromJson<GameData>(json);
-            //¼ÓÔØ¶ÔÓ¦³¡¾°
+            //åŠ è½½å¯¹åº”åœºæ™¯
             UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentData.currentSceneIndex);
         }
     }
-    // ¼ÓÔØ×îĞÂ´æµµ£¨ÏÈ²é×Ô¶¯´æµµ£¬Ã»ÓĞÔÙÕÒ²ÛÎ»1¡«5ÖĞĞŞ¸ÄÊ±¼ä×îĞÂµÄ£©
+    // åŠ è½½æœ€æ–°å­˜æ¡£ï¼ˆå…ˆæŸ¥è‡ªåŠ¨å­˜æ¡£ï¼Œæ²¡æœ‰å†æ‰¾æ§½ä½1ï½5ä¸­ä¿®æ”¹æ—¶é—´æœ€æ–°çš„ï¼‰
     public static void LoadGame()
     {
-        // ÓÅÏÈ¼ÓÔØ×Ô¶¯´æµµ
+        // ä¼˜å…ˆåŠ è½½è‡ªåŠ¨å­˜æ¡£
         string autoPath = SavePath + "autosave.json";
         if (File.Exists(autoPath))
         {
@@ -63,7 +63,7 @@ public static class SaveManager
             return;
         }
 
-        // ·ñÔò²éÕÒ±£´æÊ±¼ä×îĞÂµÄÊÖ¶¯´æµµ
+        // å¦åˆ™æŸ¥æ‰¾ä¿å­˜æ—¶é—´æœ€æ–°çš„æ‰‹åŠ¨å­˜æ¡£
         string latestFile = null;
         System.DateTime latestTime = System.DateTime.MinValue;
         for (int i = 1; i <= 5; i++)
@@ -90,11 +90,11 @@ public static class SaveManager
         }
         else
         {
-            Debug.Log("Ã»ÓĞÕÒµ½ÈÎºÎ´æµµ£¡");
+            Debug.Log("æ²¡æœ‰æ‰¾åˆ°ä»»ä½•å­˜æ¡£ï¼");
         }
     }
 
-    //×Ô¶¯´æµµ£¨ÍË³öÓÎÏ·/½á¾Ö´¥·¢Ê±µ÷ÓÃ£©
+    //è‡ªåŠ¨å­˜æ¡£ï¼ˆé€€å‡ºæ¸¸æˆ/ç»“å±€è§¦å‘æ—¶è°ƒç”¨ï¼‰
     public static void AutoSave()
     {
         CurrentData.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -102,13 +102,13 @@ public static class SaveManager
         File.WriteAllText(AutoSavePath, json);
     }
 
-    //¼ì²éÊÇ·ñ´æÔÚ´æµµ
+    //æ£€æŸ¥æ˜¯å¦å­˜åœ¨å­˜æ¡£
     public static bool HasSaveData()
     {
         return File.Exists(AutoSavePath) || File.Exists(SavePath + "save_1.json");
     }
 
-    //»ñÈ¡´æµµĞÅÏ¢ÁĞ±í£¨ÓÃÓÚ´æµµÑ¡Ôñ½çÃæUIÕ¹Ê¾£©
+    //è·å–å­˜æ¡£ä¿¡æ¯åˆ—è¡¨ï¼ˆç”¨äºå­˜æ¡£é€‰æ‹©ç•Œé¢UIå±•ç¤ºï¼‰
     public static List<SaveSlotInfo> GetSaveSlots()
     {
         List<SaveSlotInfo> slots = new List<SaveSlotInfo>();
@@ -136,16 +136,16 @@ public static class SaveManager
 
     public static void StartNewGame()
     {
-        // ÖØÖÃµ±Ç°Êı¾İ
+        // é‡ç½®å½“å‰æ•°æ®
         CurrentData = new GameData();
-        // ¿ÉÑ¡£ºÉ¾³ı×Ô¶¯´æµµÎÄ¼ş
+        // å¯é€‰ï¼šåˆ é™¤è‡ªåŠ¨å­˜æ¡£æ–‡ä»¶
         if (File.Exists(AutoSavePath))
             File.Delete(AutoSavePath);
     }
 
 }
 
-//´æµµÎ»ĞÅÏ¢
+//å­˜æ¡£ä½ä¿¡æ¯
 public class SaveSlotInfo
 {
     public int slotIndex;

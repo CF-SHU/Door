@@ -5,11 +5,11 @@ public class AutoSaveBehaviour : MonoBehaviour
     private static bool hasContinued = false;
     private void Awake()
     {
-        // È·±£¸ÃÎïÌåÔÚ³¡¾°ÇĞ»»Ê±²»±»Ïú»Ù£¬ÒÔ³ÖĞøÏìÓ¦ÍË³öÊÂ¼ş
+        // ç¡®ä¿è¯¥ç‰©ä½“åœ¨åœºæ™¯åˆ‡æ¢æ—¶ä¸è¢«é”€æ¯ï¼Œä»¥æŒç»­å“åº”é€€å‡ºäº‹ä»¶
         DontDestroyOnLoad(gameObject);
         if (!hasContinued)
         {
-            // ÓÎÏ·Æô¶¯Ê±£¬×Ô¶¯¼ÓÔØ×î½üµÄ´æµµ£¨Èç¹ûÓĞ£©
+            // æ¸¸æˆå¯åŠ¨æ—¶ï¼Œè‡ªåŠ¨åŠ è½½æœ€è¿‘çš„å­˜æ¡£ï¼ˆå¦‚æœæœ‰ï¼‰
             hasContinued = true;
             TryContinueGame();
         }
@@ -17,22 +17,22 @@ public class AutoSaveBehaviour : MonoBehaviour
 
     private void TryContinueGame()
     {
-        // ¼ì²éÊÇ·ñÓĞÈÎºÎ´æµµ£¨×Ô¶¯´æµµ»òÊÖ¶¯´æµµ£©
+        // æ£€æŸ¥æ˜¯å¦æœ‰ä»»ä½•å­˜æ¡£ï¼ˆè‡ªåŠ¨å­˜æ¡£æˆ–æ‰‹åŠ¨å­˜æ¡£ï¼‰
         if (SaveManager.HasSaveData())
         {
-            Debug.Log("¼ì²âµ½´æµµ£¬×Ô¶¯¼ÌĞøÓÎÏ·...");
-            SaveManager.LoadGame();  // ÎŞ²ÎÖØÔØ£ºÓÅÏÈ×Ô¶¯´æµµ£¬·ñÔò×îĞÂÊÖ¶¯´æµµ
+            Debug.Log("æ£€æµ‹åˆ°å­˜æ¡£ï¼Œè‡ªåŠ¨ç»§ç»­æ¸¸æˆ...");
+            SaveManager.LoadGame();  // æ— å‚é‡è½½ï¼šä¼˜å…ˆè‡ªåŠ¨å­˜æ¡£ï¼Œå¦åˆ™æœ€æ–°æ‰‹åŠ¨å­˜æ¡£
         }
         else
         {
-            Debug.Log("Ã»ÓĞÕÒµ½´æµµ£¬¿ªÊ¼ĞÂÓÎÏ·¡£");
-            // ÕâÀï¿ÉÒÔ¼ÓÔØĞÂÓÎÏ·³¡¾°£¬»òÍ£ÁôÔÚÖ÷²Ëµ¥ÈÃÍæ¼ÒÑ¡Ôñ
+            Debug.Log("æ²¡æœ‰æ‰¾åˆ°å­˜æ¡£ï¼Œå¼€å§‹æ–°æ¸¸æˆã€‚");
+            // è¿™é‡Œå¯ä»¥åŠ è½½æ–°æ¸¸æˆåœºæ™¯ï¼Œæˆ–åœç•™åœ¨ä¸»èœå•è®©ç©å®¶é€‰æ‹©
         }
     }
 
     private void OnApplicationQuit()
     {
-        Debug.Log("ÓÎÏ·ÍË³ö£¬Ö´ĞĞ×Ô¶¯´æµµ...");
+        Debug.Log("æ¸¸æˆé€€å‡ºï¼Œæ‰§è¡Œè‡ªåŠ¨å­˜æ¡£...");
         SaveManager.AutoSave();
     }
 }

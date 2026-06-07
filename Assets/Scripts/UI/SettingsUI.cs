@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Fungus;
-using System.Reflection;   // ·´ÉäÃüÃû¿Õ¼ä
+using System.Reflection;   // åå°„å‘½åç©ºé—´
 
 public class SettingsUI : MonoBehaviour
 {
-    [Header("ÉèÖÃÒôÁ¿/ÒôĞ§/ËÙ¶È")]
+    [Header("è®¾ç½®éŸ³é‡/éŸ³æ•ˆ/é€Ÿåº¦")]
     public Slider musicSlider;
     public Slider seSlider;
     public Slider textSpeedSlider;
 
-    [Header("·µ»Ø°´Å¥")]
+    [Header("è¿”å›æŒ‰é’®")]
     public Button returnButton;
 
     void Start()
@@ -19,7 +19,7 @@ public class SettingsUI : MonoBehaviour
         seSlider.value = SettingsManager.SEVolume;
         textSpeedSlider.value = SettingsManager.TextSpeed;
 
-        // AddListener£º×¢²áÒ»¸ö»Øµ÷º¯Êı
+        // AddListenerï¼šæ³¨å†Œä¸€ä¸ªå›è°ƒå‡½æ•°
         musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         seSlider.onValueChanged.AddListener(OnSEVolumeChanged);
         textSpeedSlider.onValueChanged.AddListener(OnTextSpeedChanged);
@@ -29,8 +29,8 @@ public class SettingsUI : MonoBehaviour
     void OnMusicVolumeChanged(float value)
     {
         SettingsManager.MusicVolume = value;
-        // AudioListener.volume¿ØÖÆÈ«¾ÖÒôÁ¿
-        // Ò²¿ÉÒÔÓÃAudioMixerÊµÏÖ¸ü¾«Ï¸µÄ¿ØÖÆ
+        // AudioListener.volumeæ§åˆ¶å…¨å±€éŸ³é‡
+        // ä¹Ÿå¯ä»¥ç”¨AudioMixerå®ç°æ›´ç²¾ç»†çš„æ§åˆ¶
         AudioListener.volume = value;
     }
     void OnSEVolumeChanged(float value)
@@ -45,9 +45,9 @@ public class SettingsUI : MonoBehaviour
 
     void ApplyTextSpeedToAllWriters(float secondsPerChar)
     {
-        // secondsPerChar ÊÇ¡°Ã¿¸ö×Ö·ûµÈ´ıÃëÊı¡±£¬ĞèÒª×ª³É Fungus µÄ¡°Ã¿Ãë×Ö·ûÊı¡±
+        // secondsPerChar æ˜¯â€œæ¯ä¸ªå­—ç¬¦ç­‰å¾…ç§’æ•°â€ï¼Œéœ€è¦è½¬æˆ Fungus çš„â€œæ¯ç§’å­—ç¬¦æ•°â€
         if (secondsPerChar < 0.001f)
-            secondsPerChar = 0.05f; // ·ÀÖ¹³ıÁã
+            secondsPerChar = 0.05f; // é˜²æ­¢é™¤é›¶
 
         float charsPerSecond = 1.0f / secondsPerChar;
 
@@ -59,7 +59,7 @@ public class SettingsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Í¨¹ı·´ÉäĞŞ¸Ä Writer µÄ protected ×Ö¶Î writingSpeed
+    /// é€šè¿‡åå°„ä¿®æ”¹ Writer çš„ protected å­—æ®µ writingSpeed
     /// </summary>
     void SetWritingSpeed(Writer writer, float charsPerSecond)
     {
@@ -71,7 +71,7 @@ public class SettingsUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Î´ÕÒµ½ Writer.writingSpeed ×Ö¶Î£¬Çë¼ì²é Fungus °æ±¾");
+            Debug.LogError("æœªæ‰¾åˆ° Writer.writingSpeed å­—æ®µï¼Œè¯·æ£€æŸ¥ Fungus ç‰ˆæœ¬");
         }
     }
 

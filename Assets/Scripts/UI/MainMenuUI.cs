@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [Header("°´Å¥ÒıÓÃ")]
+    [Header("æŒ‰é’®å¼•ç”¨")]
     public Button startButton;
     public Button continueButton;
     public Button settingsButton;
@@ -14,41 +14,41 @@ public class MainMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //°ó¶¨°´Å¥µã»÷ÊÂ¼ş
+        //ç»‘å®šæŒ‰é’®ç‚¹å‡»äº‹ä»¶
         startButton.onClick.AddListener(OnStartGame);
         continueButton.onClick.AddListener(OnContinue);
         settingsButton.onClick.AddListener(OnSettings);
         characterButton.onClick.AddListener(OnCharacter);
         quitButton.onClick.AddListener(OnQuit);
 
-        //Ã»ÓĞ´æµµ£¬½ûÓÃcontinueButton
+        //æ²¡æœ‰å­˜æ¡£ï¼Œç¦ç”¨continueButton
         if (!SaveManager.HasSaveData())
         {
             continueButton.interactable = false;
         }
     }
-    //¿ªÊ¼ÓÎÏ·£¬µÚÒ»¸ö³¡¾°ClassRoom
+    //å¼€å§‹æ¸¸æˆï¼Œç¬¬ä¸€ä¸ªåœºæ™¯ClassRoom
     void OnStartGame()
     {
         SceneManager.LoadScene("ClassRoomScene");
     }
-    //¼ÌĞøÓÎÏ·£¬¼ÓÔØ´æµµ
+    //ç»§ç»­æ¸¸æˆï¼ŒåŠ è½½å­˜æ¡£
     void OnContinue()
     {
         SaveManager.LoadGame();
     }
-    //ÏÔÊ¾¡ª¡ª¡ª¡ªÉèÖÃÃæ°å
+    //æ˜¾ç¤ºâ€”â€”â€”â€”è®¾ç½®é¢æ¿
     void OnSettings()
     {
-        // ´Ó¸¸¼¶ Canvas£¨»ò¸ùCanvas£©ÉÏ»ñÈ¡ UIPanelManager
+        // ä»çˆ¶çº§ Canvasï¼ˆæˆ–æ ¹Canvasï¼‰ä¸Šè·å– UIPanelManager
         GetComponentInParent<UIPanelManager>()?.ShowPanel("SettingsPanel");
     }
-    //ÏÔÊ¾¡ª¡ª¡ª¡ªÈËÎï×ÊÁÏÃæ°å
+    //æ˜¾ç¤ºâ€”â€”â€”â€”äººç‰©èµ„æ–™é¢æ¿
     void OnCharacter()
     {
         GetComponentInParent<UIPanelManager>()?.ShowPanel("CharacterPanel");
     }
-    //ÍË³öÓÎÏ·
+    //é€€å‡ºæ¸¸æˆ
     void OnQuit()
     {
         SaveManager.AutoSave();

@@ -5,9 +5,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [Header("ÒôÆµÔ´")]
-    public AudioSource musicSource;    // ±³¾°ÒôÀÖ
-    public AudioSource sfxSource;      // ÒôĞ§
+    [Header("éŸ³é¢‘æº")]
+    public AudioSource musicSource;    // èƒŒæ™¯éŸ³ä¹
+    public AudioSource sfxSource;      // éŸ³æ•ˆ
 
     void Awake()
     {
@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // ²¥·Å±³¾°ÒôÀÖ
+    // æ’­æ”¾èƒŒæ™¯éŸ³ä¹
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
         musicSource.clip = clip;
@@ -30,13 +30,13 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    // ²¥·ÅÒôĞ§
+    // æ’­æ”¾éŸ³æ•ˆ
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
     }
 
-    // ¸üĞÂÒôÁ¿£¨ÅäºÏÉèÖÃÃæ°å£©
+    // æ›´æ–°éŸ³é‡ï¼ˆé…åˆè®¾ç½®é¢æ¿ï¼‰
     public void UpdateVolumes()
     {
         musicSource.volume = SettingsManager.MusicVolume;

@@ -5,22 +5,22 @@ using TMPro;
 
 public class CharacterCardUI : MonoBehaviour
 {
-    [Header("UIÒıÓÃ")]
-    public GameObject characterListPanel;    // ½ÇÉ«ÁĞ±í
-    public GameObject characterDetailPanel; // ½ÇÉ«ÏêÇé
-    public Transform characterListParent;   // ÁĞ±íÏîµÄ¸¸¶ÔÏó
-    public GameObject characterListItemPrefab; // ÁĞ±íÏîÔ¤ÖÆÌå
+    [Header("UIå¼•ç”¨")]
+    public GameObject characterListPanel;    // è§’è‰²åˆ—è¡¨
+    public GameObject characterDetailPanel; // è§’è‰²è¯¦æƒ…
+    public Transform characterListParent;   // åˆ—è¡¨é¡¹çš„çˆ¶å¯¹è±¡
+    public GameObject characterListItemPrefab; // åˆ—è¡¨é¡¹é¢„åˆ¶ä½“
 
-    [Header("ÏêÇéÃæ°å")]
+    [Header("è¯¦æƒ…é¢æ¿")]
     public Image portraitImage;
     public TMP_Text nameText;
     public TMP_Text descriptionText;
     public TMP_Text affectionText;
 
-    [Header("¶¯»­")]
-    public Animator cardAnimator;           // ¿¨Æ¬¶¯»­Æ÷
+    [Header("åŠ¨ç”»")]
+    public Animator cardAnimator;           // å¡ç‰‡åŠ¨ç”»å™¨
 
-    [Header("½ÇÉ«Êı¾İ")]
+    [Header("è§’è‰²æ•°æ®")]
     public CharacterData[] characters;
 
     void Start()
@@ -28,17 +28,17 @@ public class CharacterCardUI : MonoBehaviour
         BuildCharacterList();
     }
 
-    // ¹¹½¨½ÇÉ«ÁĞ±í
+    // æ„å»ºè§’è‰²åˆ—è¡¨
     void BuildCharacterList()
     {
         foreach (var character in characters)
         {
-            // Instantiate£º¿ËÂ¡Ò»¸öGameObject£¨Ô¤ÖÆÌå£©
+            // Instantiateï¼šå…‹éš†ä¸€ä¸ªGameObjectï¼ˆé¢„åˆ¶ä½“ï¼‰
             GameObject item = Instantiate(characterListItemPrefab, characterListParent);
             item.GetComponentInChildren<Image>().sprite = character.characterPortrait;
             item.GetComponentInChildren<TMP_Text>().text = character.characterName;
 
-            // °ó¶¨µã»÷ÊÂ¼ş
+            // ç»‘å®šç‚¹å‡»äº‹ä»¶
             item.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ShowCharacterDetail(character);
@@ -46,23 +46,23 @@ public class CharacterCardUI : MonoBehaviour
         }
     }
 
-    // ÏÔÊ¾½ÇÉ«ÏêÇé£¨´ø¶¯»­×ª³¡£©
+    // æ˜¾ç¤ºè§’è‰²è¯¦æƒ…ï¼ˆå¸¦åŠ¨ç”»è½¬åœºï¼‰
     void ShowCharacterDetail(CharacterData character)
     {
         characterListPanel.SetActive(false);
         characterDetailPanel.SetActive(true);
 
-        // ´¥·¢×ª³¡¶¯»­
+        // è§¦å‘è½¬åœºåŠ¨ç”»
         cardAnimator?.SetTrigger("FlipCard");
 
-        // ¸üĞÂÏêÇéĞÅÏ¢
+        // æ›´æ–°è¯¦æƒ…ä¿¡æ¯
         portraitImage.sprite = character.fullBodyImage;
         nameText.text = character.characterName;
         descriptionText.text = character.description;
-        affectionText.text = $"ºÃ¸Ğ¶È: {character.affectionLevel}";
+        affectionText.text = $"å¥½æ„Ÿåº¦: {character.affectionLevel}";
     }
 
-    // ·µ»Ø½ÇÉ«ÁĞ±í
+    // è¿”å›è§’è‰²åˆ—è¡¨
     public void BackToList()
     {
         characterDetailPanel.SetActive(false);
