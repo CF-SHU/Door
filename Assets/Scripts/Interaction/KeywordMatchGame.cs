@@ -39,6 +39,20 @@ public class KeywordMatchGame : MonoBehaviour
     private List<string> currentAvailablePhrases;   // 当前未被选的词条
     private List<string> currentAnswer;             // 当前已选答案（按顺序）
 
+    [Header("挑战设置")]
+    public int challengeRequiredPlays = 3;
+    public float challengeTimeLimit = 60f;
+    public EndingManager endingManager;
+    public string challengeFailEndingID = "ending3";
+    public string challengeFailEndingTitle = "无能反派";
+    public string challengeFailEndingDesc = "你未能在限定时间内完成三次挑战。";
+    public UnityEvent onChallengeFailed;
+    public UnityEvent onChallengeSuccess;
+
+    private bool challengeActive = false;
+    private int challengePlayCount = 0;
+    private float challengeEndTime = 0f;
+
     private void Awake()
     {
         // 初始隐藏面板，等 Fungus 调用 OpenGame
@@ -62,6 +76,11 @@ public class KeywordMatchGame : MonoBehaviour
     public void ExitGame()
     {
         gamePanel.SetActive(false);
+        if (challengeActive)
+        {
+            challengeActive = false;
+            messageText.text = "挑战已取消。";
+        }
         onGameExit?.Invoke();
     }
 
@@ -275,9 +294,54 @@ public class KeywordMatchGame : MonoBehaviour
 
     private void WinGame()
     {
+        if (challengeActive)
+        {
+            challengePlayCount++;
+            if (challengePlayCount >= challengeRequiredPlays)
+            {
+                challengeActive = false;
+                gamePanel.SetActive(false);
+                messageText.text = "恭喜完成三次挑战！";
+                onChallengeSuccess?.Invoke();
+                onGameWin?.Invoke();
+                return;
+            }
+
+            ShowMessage($"第 {challengePlayCount} 次完成，继续下一轮！", true);
+            currentRuleIndex = 0;
+            LoadRule(currentRuleIndex);
+            return;
+        }
+
         gamePanel.SetActive(false);
         messageText.text = "恭喜完成所有规则！";
         onGameWin?.Invoke();
+    }
+
+    public void PlayGame3Time()
+    {
+        challengeActive = true;
+        challengePlayCount = 0;
+        challengeEndTime = Time.time + challengeTimeLimit;
+        OpenGame();
+        ShowMessage($"挑战开始：60秒内完成 {challengeRequiredPlays} 次小游戏。", true);
+    }
+
+    private void Update()
+    {
+        if (!challengeActive) return;
+
+        if (Time.time > challengeEndTime)
+        {
+            challengeActive = false;
+            gamePanel.SetActive(false);
+            messageText.text = "挑战失败：时间耗尽。";
+            onChallengeFailed?.Invoke();
+            if (endingManager != null)
+            {
+                endingManager.TriggerEnding(challengeFailEndingID, challengeFailEndingTitle, challengeFailEndingDesc);
+            }
+        }
     }
 
     private void ShowMessage(string msg, bool isGood)

@@ -8,8 +8,8 @@ public static class SaveManager
 {
     //Application.persistentDataPath: unity提供的跨平台持久化数据存储路径，
     //在Windows上是 C:\Users\用户名\AppData\LocalLow\公司名\项目名，打包后存档文件会保存在这里。
-    private static string SavePath => Application.persistentDataPath + "/saves";
-    private static string AutoSavePath => SavePath + "/autosave.json";
+    private static string SavePath => Application.persistentDataPath + "/saves/";
+    private static string AutoSavePath => SavePath + "autosave.json";
     //存档数据存储,文件名 + GameData对象
     private static Dictionary<string, GameData> saveCache = new Dictionary<string, GameData>();
     //游戏数据
@@ -95,11 +95,39 @@ public static class SaveManager
     }
 
     //自动存档（退出游戏/结局触发时调用）
-    public static void AutoSave()
+    public static void AutoSave(string namedSuffix = null)
     {
+        if (CurrentData == null)
+            CurrentData = new GameData();
+
+        CurrentData.currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         CurrentData.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         string json = JsonUtility.ToJson(CurrentData, true);
         File.WriteAllText(AutoSavePath, json);
+
+        if (!string.IsNullOrEmpty(namedSuffix))
+        {
+            string namedPath = NamedAutoSavePath(namedSuffix);
+            File.WriteAllText(namedPath, json);
+        }
+    }
+
+    private static string NamedAutoSavePath(string suffix)
+    {
+        suffix = SanitizeFileName(suffix);
+        return SavePath + "autosave_" + suffix + ".json";
+    }
+
+    private static string SanitizeFileName(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return "unnamed";
+
+        foreach (var c in Path.GetInvalidFileNameChars())
+        {
+            value = value.Replace(c.ToString(), "_");
+        }
+        return value.Replace(" ", "_");
     }
 
     //检查是否存在存档
@@ -141,6 +169,12 @@ public static class SaveManager
         // 可选：删除自动存档文件
         if (File.Exists(AutoSavePath))
             File.Delete(AutoSavePath);
+    }
+
+    public static void RestartGame()
+    {
+        StartNewGame();       // 重置 CurrentData 并删除自动存档
+        SceneManager.LoadScene(0); // 加载主菜单或第一个场景
     }
 
 }

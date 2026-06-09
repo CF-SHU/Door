@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Managers\SaveManager.cs" />
     <Compile Include="Assets\Scripts\chatwithAi\RoleItem.cs" />
     <Compile Include="Assets\Scripts\Core\Exit.cs" />
+    <Compile Include="Assets\Scripts\Managers\FungusBlockCaller.cs" />
     <Compile Include="Assets\Scripts\Core\Go.cs" />
     <Compile Include="Assets\Scripts\chatwithAi\CharacterData2.0.cs" />
     <Compile Include="Assets\Scripts\Data\GameData.cs" />
@@ -84,11 +85,13 @@
     <Compile Include="Assets\Scripts\Managers\GameSaveBootstrap.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanelManager.cs" />
     <Compile Include="Assets\Scripts\Core\RoomNavigation.cs" />
+    <Compile Include="Assets\Scripts\Interaction\MessagePanelController.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonCommand.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Data\AutoSaveBehaviour.cs" />
     <Compile Include="Assets\Scripts\Interaction\InteractiveObject.cs" />
     <Compile Include="Assets\Scripts\Core\Room.cs" />
+    <Compile Include="Assets\Scripts\Managers\QuitButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\InputAction.cs" />
     <Compile Include="Assets\Scripts\Interaction\KeywordMatchGame.cs" />
     <Compile Include="Assets\Scripts\Managers\SettingsManager.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Scripts\Managers\EndingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SettingsUI.cs" />
     <Compile Include="Assets\Scripts\Core\TakeKey.cs" />
+    <Compile Include="Assets\Scripts\Interaction\ShowMessagePanelCommand.cs" />
     <Compile Include="Assets\Scripts\Core\GoBack.cs" />
   </ItemGroup>
   <ItemGroup>

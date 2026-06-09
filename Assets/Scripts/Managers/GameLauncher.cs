@@ -16,6 +16,23 @@ public class GameLauncher : MonoBehaviour
     // 继续游戏按钮调用的方法（可选）
     public void ContinueGame()
     {
-        SaveManager.LoadGame();  // 无参重载：自动加载最新存档
+        Debug.Log("[GameLauncher] ContinueGame clicked");
+        bool hasSave = SaveManager.HasSaveData();
+        Debug.Log($"[GameLauncher] HasSaveData={hasSave}");
+        if (!hasSave)
+        {
+            Debug.LogWarning("[GameLauncher] no save data found, Continue will not load a scene.");
+            return;
+        }
+
+        try
+        {
+            SaveManager.LoadGame();  // 无参重载：自动加载最新存档
+            Debug.Log("[GameLauncher] LoadGame invoked");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("[GameLauncher] LoadGame failed: " + ex);
+        }
     }
-}
+} 
